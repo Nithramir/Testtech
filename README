@@ -3,10 +3,14 @@ Il est écrit en Golang, et se connecte à une base de donnée mysql.
 Il créé une database testtech si celle-ci n'existe pas.
 Il créé une tables csv_file dans testtech si celle-ci n'existe pas.
 
-Utiliser 'make', pour compiler le projet et installer les dépendances.
+
+
+Utiliser 'make', pour compiler le projet et installer les dépendances. Celles-ci seront installées dans le dossier courant.
+Le Makefile tentera d'installer mysql et golang si ceux-ci ne sont pas installé.
+Il lancera ensuite mysql.
 
 Usage:
-./main -file [dossier ou fichier] -user [root par defaut] -passwd [1234 par defaut]
+./testtech -file [dossier ou fichier] -user [mysql user] -passwd [mysql password]
 
 Si un dossier est passé en paramètre, le programme testera tous les fichiers du repertoire. S'il s'agit d'un fichier, seul celui-ci sera chargé dans la base de donnée.
 
