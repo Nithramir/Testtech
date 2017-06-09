@@ -1,5 +1,5 @@
 Ce programme charge un fichier csv composé de prenom, nom, email, date, dans une base de donnée.
-Il est écrit en Golang, et se connecte à une base de donnée mysql.
+Il est écrit en Golang, et se connecte à une base de donnée mysql. Il est exécuté sur linux(ubuntu).
 Il créé une database testtech si celle-ci n'existe pas.
 Il créé une tables csv_file dans testtech si celle-ci n'existe pas.
 
