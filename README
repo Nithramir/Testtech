@@ -1,0 +1,13 @@
+Ce programme charge un fichier csv composé de prenom, nom, email, date, dans une base de donnée. 
+Il est écrit en Golang, et se connecte à une base de donnée mysql.
+Il créé une database testtech si celle-ci n'existe pas.
+Il créé une tables csv_file dans testtech si celle-ci n'existe pas.
+
+Utiliser 'make', pour compiler le projet et installer les dépendances.
+
+Usage:
+./main -file [dossier ou fichier] -user [root par defaut] -passwd [1234 par defaut]
+
+Si un dossier est passé en paramètre, le programme testera tous les fichiers du repertoire. S'il s'agit d'un fichier, seul celui-ci sera chargé dans la base de donnée.
+
+Chaque email est unique dans la base de donnée. Un email ne sera pas chargé si celui-ci existe déjà dans la base de donnée.
