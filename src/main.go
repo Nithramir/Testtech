@@ -33,12 +33,13 @@ func main() {
 	//déclaration des différents flags
 	name_file := flag.String("file", "testtech.csv", "No input file")
 	db_user := flag.String("user", "root", "No database User")
-	db_passw := flag.String("passwd", "1234", "No database password")
-	flag.Parse()
-	if len(os.Args) == 0 {
+	db_passw := flag.String("passwd", "12345", "No database password")
+	if len(os.Args) < 7 {
 		flag.Usage()
 		os.Exit(1)
 	}
+
+	flag.Parse()
 	//intiliser la base de donnee
 	db := init_database(*db_user, *db_passw)
 	fi, err := os.Stat(*name_file)

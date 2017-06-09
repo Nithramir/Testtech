@@ -18,7 +18,7 @@ func init_database(db_user string, db_passw string) *sql.DB {
 	fmt.Println("Connected to database")
 	rows, err := db.Query("CREATE TABLE if not exists csv_file(first_name CHAR(50), last_name CHAR(50), email CHAR(100), date DATETIME);")
 	handle_err(err)
-	fmt.Println("table created")
+	fmt.Println("Connected to table")
 	defer rows.Close()
 	return db
 }

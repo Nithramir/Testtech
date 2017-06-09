@@ -14,13 +14,13 @@ CR = go run
 
 export GOPATH := $(shell pwd)
 
-all : dependance $(NAME)
+all : clean dependance $(NAME)
 
 $(NAME):
-	$(CC) -o $(NAME) $(SRC)
+	go build -o testtech src/*.go
 
 clean:
-	rm $(NAME)
+	rm -f $(NAME)
 
 dependance:
 	apt-get install golang
