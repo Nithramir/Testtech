@@ -17,34 +17,38 @@ func handle_err(err error) {
 	}
 }
 
-func charge_in_dtb(db *sql.DB, name_file string, db_user string, db_passw string) {
+func charge_in_dtb(db *sql.DB, name_file string, db_user string, db_passw string) int {
 	data, err := read_file(name_file)
 	if err != 1 {
 		//recuperation du csv dans un tableau
 		r := csv.NewReader(strings.NewReader(data))
 		records, err := r.ReadAll()
 		handle_err(err)
+		if csv_ok(records) == 1 {
+			return 0
+		}
 		//completer la base de donnés
 		complete_database(db, records)
 	}
+	return 1
 }
 
 func main() {
-	//déclaration des différents flags
+	//déclaration des différents flags, et parsing.
 	name_file := flag.String("file", "testtech.csv", "No input file")
 	db_user := flag.String("user", "root", "No database User")
-	db_passw := flag.String("passwd", "12345", "No database password")
+	db_passw := flag.String("passwd", "1234", "No database password")
 	if len(os.Args) < 7 {
 		flag.Usage()
 		os.Exit(1)
 	}
-
 	flag.Parse()
+
 	//intiliser la base de donnee
 	db := init_database(*db_user, *db_passw)
 	fi, err := os.Stat(*name_file)
 	handle_err(err)
-	//S'il le lien est un dossier, on iterate sur tous les fichiers du repertoire
+	//Si le lien est un dossier, on iterate sur tous les fichiers du repertoire
 	if fi.IsDir() {
 		files, err := ioutil.ReadDir(*name_file)
 		handle_err(err)

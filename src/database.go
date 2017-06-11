@@ -11,14 +11,14 @@ import (
 //cree une table si ell n'exsite pas
 func init_database(db_user string, db_passw string) *sql.DB {
 	db, err := sql.Open("mysql", db_user+":"+db_passw+"@tcp(127.0.0.1:3306)/")
-	_, err = db.Exec("CREATE DATABASE if not exists testtechst")
+	_, err = db.Exec("CREATE DATABASE if not exists testtech")
 	handle_err(err)
-	_, err = db.Exec("USE testtechst")
+	_, err = db.Exec("USE testtech")
 	handle_err(err)
-	fmt.Println("Connected to database")
+	fmt.Println("Connected to database testtech")
 	rows, err := db.Query("CREATE TABLE if not exists csv_file(first_name CHAR(50), last_name CHAR(50), email CHAR(100), date DATETIME);")
 	handle_err(err)
-	fmt.Println("Connected to table")
+	fmt.Println("Connected to table csv_file")
 	defer rows.Close()
 	return db
 }
@@ -36,6 +36,8 @@ func email_exist(db *sql.DB, email string) int {
 
 }
 
+//Cette fonction va completer la base de donne
+//en vérifiant que chaque email est unique.
 func complete_database(db *sql.DB, file [][]string) {
 	for i := range file {
 		request := "INSERT INTO csv_file VALUES("
