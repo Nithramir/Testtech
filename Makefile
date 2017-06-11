@@ -27,3 +27,4 @@ dependance:
 	apt-get install mysql-server
 	sudo service mysql start
 	go get github.com/go-sql-driver/mysql
+	go get github.com/badoux/checkmail

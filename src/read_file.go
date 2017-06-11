@@ -2,10 +2,12 @@ package main
 
 import (
 	"fmt"
+	"github.com/badoux/checkmail"
 	"io/ioutil"
 	"regexp"
 )
 
+//cette fonction vérifie la bonne taille des champs, et le format de l'email
 func string_size(line []string) int {
 	if len(line[0]) == 0 || len(line[0]) > 50 {
 		return 1
@@ -16,6 +18,11 @@ func string_size(line []string) int {
 	if len(line[2]) == 0 || len(line[2]) > 100 {
 		return 1
 	}
+	err := checkmail.ValidateFormat(line[2])
+	if err != nil {
+		fmt.Println("Email: ", err)
+		return 1
+	}
 	return 0
 }
 
@@ -24,7 +31,7 @@ func csv_ok(file [][]string) int {
 	for i := range file {
 		if len(file[i]) == 4 {
 			if string_size(file[i]) == 1 {
-				fmt.Println("Problem in csv size fields.")
+				fmt.Println("Error csv size fields.")
 				return 1
 			}
 		} else {

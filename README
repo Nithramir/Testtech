@@ -15,4 +15,5 @@ Si un dossier est passé en paramètre, le programme testera tous les fichiers d
 
 Chaque email est unique dans la base de donnée. Un email ne sera pas chargé si celui-ci existe déjà dans la base de donnée.
 
-Le programme testera la taille de chaque entrée, pour savoir si celle-ci est valide.
+Le programme testera la taille de chaque entrée, pour savoir si celle-ci est valide. i
+Le format de l'email sera testé.
